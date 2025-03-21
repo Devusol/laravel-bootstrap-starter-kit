@@ -17,9 +17,9 @@
 </head>
 <body class="font-sans text-dark">
 <div class="min-vh-100 d-flex flex-column justify-content-center align-items-center p-3 bg-light">
-    <div class="mb-4">
+    <div class="mb-4 text-center">
         <a href="/">
-            <x-application-logo class="w-25 h-25 text-secondary" />
+            <x-application-logo class="logo-svg text-secondary" />
         </a>
     </div>
 

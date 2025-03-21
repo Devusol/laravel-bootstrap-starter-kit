@@ -2,7 +2,7 @@
     <div class="container px-3 px-sm-4 px-lg-5">
         <!-- Logo -->
         <a class="navbar-brand" href="{{ route('dashboard') }}">
-            <x-application-logo class="w-25 h-25 text-dark" />
+            <x-application-logo class="logo-svg text-dark" />
         </a>
 
         <!-- Toggler -->
