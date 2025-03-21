@@ -12,6 +12,7 @@ $font-family-base: 'Inter', sans-serif;
 
 // Import Bootstrap
 @import "bootstrap/scss/bootstrap";
+@import 'components/sidebar';
 
 // Custom styles
 body {

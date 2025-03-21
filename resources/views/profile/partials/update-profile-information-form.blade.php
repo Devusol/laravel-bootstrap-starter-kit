@@ -1,12 +1,7 @@
 <section>
-    <header class="mb-4">
-        <h2 class="fs-5 fw-medium text-dark">
-            {{ __('Profile Information') }}
-        </h2>
-        <p class="mt-2 text-muted">
-            {{ __("Update your account's profile information and email address.") }}
-        </p>
-    </header>
+    <p class="text-muted mb-4">
+        {{ __("Update your account's profile information and email address.") }}
+    </p>
 
     <form id="send-verification" method="POST" action="{{ route('verification.send') }}">
         @csrf
@@ -17,15 +12,19 @@
         @method('PATCH')
 
         <div class="mb-3">
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" name="name" type="text" class="form-control" :value="old('name', $user->name)" required autofocus autocomplete="name" />
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
+            <label for="name" class="form-label">{{ __('Name') }}</label>
+            <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name', $user->name) }}" required autofocus autocomplete="name">
+            @error('name')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
         </div>
 
         <div class="mb-3">
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" name="email" type="email" class="form-control" :value="old('email', $user->email)" required autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+            <label for="email" class="form-label">{{ __('Email') }}</label>
+            <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email', $user->email) }}" required autocomplete="username">
+            @error('email')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
 
             @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
                 <div class="mt-3">
@@ -37,21 +36,22 @@
                     </p>
 
                     @if (session('status') === 'verification-link-sent')
-                        <p class="mt-2 text-success">
+                        <div class="alert alert-success alert-dismissible fade show mt-2" role="alert">
                             {{ __('A new verification link has been sent to your email address.') }}
-                        </p>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
                     @endif
                 </div>
             @endif
         </div>
 
         <div class="d-flex align-items-center gap-3">
-            <x-primary-button class="btn btn-primary">
+            <button type="submit" class="btn btn-primary">
                 {{ __('Save') }}
-            </x-primary-button>
+            </button>
 
             @if (session('status') === 'profile-updated')
-                <div class="alert alert-success alert-dismissible fade show m-0" role="alert" id="profileUpdatedAlert">
+                <div class="alert alert-success alert-dismissible fade show m-0" role="alert">
                     {{ __('Saved.') }}
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>

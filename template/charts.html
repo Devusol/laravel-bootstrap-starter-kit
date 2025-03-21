@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Charts - Admin Dashboard</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="node_modules/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-brand">
+            <img src="assets/images/hostmoz.png" alt="HostMoz Logo" class="brand-logo" style="height: 40px; margin-right: 10px;">
+            <span>HostMoz</span>
+        </div>
+        <ul class="sidebar-nav">
+            <li class="nav-item">
+                <a href="index.html" class="nav-link">
+                    <i class="fas fa-tachometer-alt me-2"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="forms.html" class="nav-link">
+                    <i class="fas fa-edit me-2"></i>
+                    <span>Forms</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="tables.html" class="nav-link">
+                    <i class="fas fa-table me-2"></i>
+                    <span>Tables</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="charts.html" class="nav-link active">
+                    <i class="fas fa-chart-bar me-2"></i>
+                    <span>Charts</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Header -->
+        <header class="header">
+            <button class="btn btn-link d-md-none" id="sidebarToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="ms-auto d-flex">
+                <div class="dropdown">
+                    <button class="btn btn-link dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown">
+                        <i class="fas fa-user-circle fa-fw"></i>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" href="#"><i class="fas fa-user fa-sm fa-fw me-2"></i>Profile</a></li>
+                        <li><a class="dropdown-item" href="#"><i class="fas fa-cogs fa-sm fa-fw me-2"></i>Settings</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt fa-sm fa-fw me-2"></i>Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+
+        <!-- Charts Content -->
+        <div class="container-fluid" style="margin-top: 70px;">
+            <!-- Page Heading -->
+            <h1 class="h3 mb-4 text-gray-800">Charts</h1>
+
+            <!-- Line and Bar Charts -->
+            <div class="row">
+                <div class="col-xl-6">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h6 class="m-0 font-weight-bold text-primary">Interactive Line Chart</h6>
+                            <div class="mt-2">
+                                <select class="form-select" id="lineChartPeriod">
+                                    <option value="7">Last 7 Days</option>
+                                    <option value="30">Last 30 Days</option>
+                                    <option value="90">Last 90 Days</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart-area">
+                                <canvas id="lineChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h6 class="m-0 font-weight-bold text-primary">Bar Chart</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart-area">
+                                <canvas id="barChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pie and Radar Charts -->
+            <div class="row">
+                <div class="col-xl-6">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h6 class="m-0 font-weight-bold text-primary">Interactive Pie Chart</h6>
+                            <div class="mt-2">
+                                <div class="btn-group" role="group">
+                                    <button type="button" class="btn btn-primary" data-chart="revenue">Revenue</button>
+                                    <button type="button" class="btn btn-outline-primary" data-chart="users">Users</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart-area">
+                                <canvas id="pieChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h6 class="m-0 font-weight-bold text-primary">Radar Chart</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart-area">
+                                <canvas id="radarChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Area and Bubble Charts -->
+            <div class="row">
+                <div class="col-xl-6">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h6 class="m-0 font-weight-bold text-primary">Area Chart</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart-area">
+                                <canvas id="areaChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h6 class="m-0 font-weight-bold text-primary">Bubble Chart</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart-area">
+                                <canvas id="bubbleChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="node_modules/chart.js/dist/chart.umd.js"></script>
+    
+    <script>
+        // Toggle Sidebar
+        document.getElementById('sidebarToggle').addEventListener('click', function() {
+            document.querySelector('.sidebar').classList.toggle('show');
+        });
+
+        // Line Chart
+        const lineChart = new Chart(document.getElementById('lineChart'), {
+            type: 'line',
+            data: {
+                labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                datasets: [{
+                    label: 'Sales',
+                    data: [65, 59, 80, 81, 56, 55, 40],
+                    borderColor: '#4e73df',
+                    tension: 0.3,
+                    fill: {
+                        target: 'origin',
+                        above: 'rgba(78, 115, 223, 0.05)'
+                    }
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Bar Chart
+        const barChart = new Chart(document.getElementById('barChart'), {
+            type: 'bar',
+            data: {
+                labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+                datasets: [{
+                    label: 'Revenue',
+                    data: [12, 19, 3, 5, 2, 3],
+                    backgroundColor: [
+                        'rgba(78, 115, 223, 0.8)',
+                        'rgba(28, 200, 138, 0.8)',
+                        'rgba(54, 185, 204, 0.8)',
+                        'rgba(246, 194, 62, 0.8)',
+                        'rgba(231, 74, 59, 0.8)',
+                        'rgba(133, 135, 150, 0.8)'
+                    ]
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Pie Chart
+        const pieChart = new Chart(document.getElementById('pieChart'), {
+            type: 'pie',
+            data: {
+                labels: ['Direct', 'Referral', 'Social', 'Other'],
+                datasets: [{
+                    data: [55, 30, 15, 10],
+                    backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc', '#f6c23e']
+                }]
+            },
+            options: {
+                maintainAspectRatio: false
+            }
+        });
+
+        // Radar Chart
+        const radarChart = new Chart(document.getElementById('radarChart'), {
+            type: 'radar',
+            data: {
+                labels: ['Speed', 'Reliability', 'Comfort', 'Safety', 'Efficiency'],
+                datasets: [{
+                    label: 'Product A',
+                    data: [65, 59, 90, 81, 56],
+                    fill: true,
+                    backgroundColor: 'rgba(78, 115, 223, 0.2)',
+                    borderColor: '#4e73df',
+                    pointBackgroundColor: '#4e73df'
+                }, {
+                    label: 'Product B',
+                    data: [28, 48, 40, 19, 96],
+                    fill: true,
+                    backgroundColor: 'rgba(28, 200, 138, 0.2)',
+                    borderColor: '#1cc88a',
+                    pointBackgroundColor: '#1cc88a'
+                }]
+            },
+            options: {
+                maintainAspectRatio: false
+            }
+        });
+
+        // Area Chart
+        const areaChart = new Chart(document.getElementById('areaChart'), {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                datasets: [{
+                    label: 'Mobile',
+                    data: [30, 35, 25, 45, 40, 50],
+                    fill: true,
+                    backgroundColor: 'rgba(78, 115, 223, 0.1)',
+                    borderColor: '#4e73df'
+                }, {
+                    label: 'Desktop',
+                    data: [50, 45, 55, 35, 45, 40],
+                    fill: true,
+                    backgroundColor: 'rgba(28, 200, 138, 0.1)',
+                    borderColor: '#1cc88a'
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Bubble Chart
+        const bubbleChart = new Chart(document.getElementById('bubbleChart'), {
+            type: 'bubble',
+            data: {
+                datasets: [{
+                    label: 'Dataset 1',
+                    data: Array.from({length: 15}, () => ({
+                        x: Math.random() * 100,
+                        y: Math.random() * 100,
+                        r: Math.random() * 15
+                    })),
+                    backgroundColor: 'rgba(78, 115, 223, 0.5)'
+                }, {
+                    label: 'Dataset 2',
+                    data: Array.from({length: 15}, () => ({
+                        x: Math.random() * 100,
+                        y: Math.random() * 100,
+                        r: Math.random() * 15
+                    })),
+                    backgroundColor: 'rgba(28, 200, 138, 0.5)'
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        max: 100
+                    },
+                    y: {
+                        beginAtZero: true,
+                        max: 100
+                    }
+                }
+            }
+        });
+
+        // Line Chart Period Change
+        document.getElementById('lineChartPeriod').addEventListener('change', function() {
+            const days = parseInt(this.value);
+            const labels = Array.from({length: days}, (_, i) => `Day ${i + 1}`);
+            const data = Array.from({length: days}, () => Math.floor(Math.random() * 100));
+            
+            lineChart.data.labels = labels;
+            lineChart.data.datasets[0].data = data;
+            lineChart.update();
+        });
+
+        // Pie Chart Toggle
+        document.querySelectorAll('[data-chart]').forEach(button => {
+            button.addEventListener('click', function() {
+                const chartType = this.dataset.chart;
+                const buttons = this.parentElement.querySelectorAll('button');
+                buttons.forEach(btn => btn.classList.remove('btn-primary', 'btn-outline-primary'));
+                this.classList.add('btn-primary');
+                buttons.forEach(btn => {
+                    if (btn !== this) btn.classList.add('btn-outline-primary');
+                });
+
+                if (chartType === 'revenue') {
+                    pieChart.data.labels = ['Direct', 'Referral', 'Social', 'Other'];
+                    pieChart.data.datasets[0].data = [55, 30, 15, 10];
+                } else {
+                    pieChart.data.labels = ['New', 'Returning', 'Inactive'];
+                    pieChart.data.datasets[0].data = [45, 35, 20];
+                }
+                pieChart.update();
+            });
+        });
+    </script>
+</body>
+</html> 
