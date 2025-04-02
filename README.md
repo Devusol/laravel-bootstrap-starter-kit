@@ -43,7 +43,7 @@ A modern Laravel starter kit that provides a robust foundation for building web 
 ## Installation
 
 ```bash
-laravel new --using=--using=hostmoz/laravel-bootstrap-starter-kit
+laravel new --using=hostmoz/laravel-bootstrap-starter-kit
 ```
 
 ## Upcoming Features
