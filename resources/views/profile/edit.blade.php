@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-layouts.app>
     <x-slot name="header">
         Profile Settings
     </x-slot>
